@@ -354,6 +354,10 @@ function updateBookingSummary() {
 function validateForm() {
   const form = document.getElementById('booking-form')
   const formElements = {
+    firstName: 'First name is required',
+    lastName: 'Last name is required',
+    email: 'Email is required',
+    phone: 'Phone number is required',
     startDate: 'Check-in date is required',
     endDate: 'Check-out date is required',
     roomType: 'Room type is required',
@@ -389,6 +393,26 @@ function validateForm() {
       element.classList.add('is-invalid')
       errorElement.textContent = errorMessage
       isValid = false
+    }
+
+    // Additional email validation
+    if (id === 'email' && element.value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(element.value)) {
+        element.classList.add('is-invalid')
+        errorElement.textContent = 'Please enter a valid email address'
+        isValid = false
+      }
+    }
+
+    // Additional phone validation
+    if (id === 'phone' && element.value) {
+      const phoneRegex = /^\+?[\d\s-()]{8,}$/
+      if (!phoneRegex.test(element.value)) {
+        element.classList.add('is-invalid')
+        errorElement.textContent = 'Please enter a valid phone number'
+        isValid = false
+      }
     }
   })
 
@@ -545,6 +569,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             country: trip.country,
             pricePerNight: trip.pricePerNight
           },
+          customer: {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            specialRequests:
+              document.getElementById('specialRequests')?.value || ''
+          },
           startDate: startDateInput.value,
           endDate: endDateInput.value,
           roomType: document.getElementById('roomType').value,
@@ -576,6 +608,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             title: 'Booking Successful!',
             html: `
               <div class="text-start">
+                <p><strong>Booking Reference:</strong> ${data._id}</p>
+                <p><strong>Guest:</strong> ${formData.customer.firstName} ${
+              formData.customer.lastName
+            }</p>
+                <p><strong>Email:</strong> ${formData.customer.email}</p>
+                <p><strong>Phone:</strong> ${formData.customer.phone}</p>
                 <p><strong>Trip:</strong> ${trip.name}</p>
                 <p><strong>Dates:</strong> ${formData.startDate} to ${
               formData.endDate
@@ -588,17 +626,41 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <p><strong>Total Price:</strong> $${formData.totalPrice.toFixed(
                   2
                 )}</p>
+                ${
+                  formData.customer.specialRequests
+                    ? `<p><strong>Special Requests:</strong> ${formData.customer.specialRequests}</p>`
+                    : ''
+                }
                 <p class="mt-3 text-muted">A confirmation email with further details will be sent to you shortly.</p>
               </div>
             `,
             confirmButtonText: 'Done'
           }).then((result) => {
             if (result.isConfirmed) {
-              // Reset the form
+              // Reset form fields
               form.reset()
-              // Reset the booking summary
-              updateBookingSummary()
-              // Scroll to top
+
+              // Reset select elements to their first option
+              document.getElementById('roomType').selectedIndex = 0
+              document.getElementById('mealPlan').selectedIndex = 0
+              document.getElementById('transportation').selectedIndex = 0
+
+              // Clear any validation states
+              document.querySelectorAll('.is-invalid').forEach((el) => {
+                el.classList.remove('is-invalid')
+              })
+              document.querySelectorAll('.invalid-feedback').forEach((el) => {
+                el.textContent = ''
+              })
+
+              // Reset booking summary
+              const bookingSummaryContainer =
+                document.getElementById('booking-summary')
+              if (bookingSummaryContainer) {
+                bookingSummaryContainer.innerHTML = ''
+              }
+
+              // Scroll to top of the page
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }
           })

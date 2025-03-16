@@ -25,6 +25,35 @@ const bookingSchema = new mongoose.Schema(
         required: true
       }
     },
+    customer: {
+      firstName: {
+        type: String,
+        required: true,
+        trim: true
+      },
+      lastName: {
+        type: String,
+        required: true,
+        trim: true
+      },
+      email: {
+        type: String,
+        required: true,
+        trim: true,
+        lowercase: true,
+        match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address']
+      },
+      phone: {
+        type: String,
+        required: true,
+        trim: true,
+        match: [/^\+?[\d\s-()]{8,}$/, 'Please enter a valid phone number']
+      },
+      specialRequests: {
+        type: String,
+        trim: true
+      }
+    },
     startDate: {
       type: Date,
       required: true

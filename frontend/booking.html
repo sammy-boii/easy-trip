@@ -50,159 +50,162 @@
           <div class="card shadow-sm">
             <div class="card-body">
               <h3 class="card-title mb-4">Complete Your Booking</h3>
-              <form id="booking-form">
-                <!-- Dates -->
-                <div class="row mb-4">
-                  <div class="col-md-6">
-                    <label for="startDate" class="form-label"
-                      >Check-in Date</label
-                    >
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="startDate"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="endDate" class="form-label"
-                      >Check-out Date</label
-                    >
-                    <input
-                      type="date"
-                      class="form-control"
-                      id="endDate"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <!-- Room and Guests -->
-                <div class="row mb-4">
-                  <div class="col-md-6">
-                    <label for="roomType" class="form-label">Room Type</label>
-                    <select class="form-select" id="roomType" required>
-                      <option value="standard">Standard Room</option>
-                      <option value="deluxe">Deluxe Room</option>
-                      <option value="suite">Suite</option>
-                      <option value="villa">Villa</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="people" class="form-label"
-                      >Number of Guests</label
-                    >
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="people"
-                      min="1"
-                      max="10"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <!-- Additional Services -->
-                <div class="row mb-4">
-                  <div class="col-md-6">
-                    <label for="mealPlan" class="form-label">Meal Plan</label>
-                    <select class="form-select" id="mealPlan" required>
-                      <option value="room_only">Room Only</option>
-                      <option value="breakfast">Breakfast Included</option>
-                      <option value="half_board">Half Board</option>
-                      <option value="full_board">Full Board</option>
-                      <option value="all_inclusive">All Inclusive</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="transportation" class="form-label"
-                      >Airport Transfer</label
-                    >
-                    <select class="form-select" id="transportation" required>
-                      <option value="none">No Transfer</option>
-                      <option value="shared">Shared Shuttle</option>
-                      <option value="private">Private Transfer</option>
-                      <option value="luxury">Luxury Vehicle</option>
-                    </select>
+              <form id="booking-form" class="mt-4">
+                <div class="card shadow-sm border-0 rounded-3">
+                  <div class="card-body p-4">
+                    <h4 class="card-title mb-4">
+                      <i class="fas fa-user text-primary me-2"></i>Guest
+                      Information
+                    </h4>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label for="firstName" class="form-label"
+                          >First Name *</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="firstName"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="lastName" class="form-label"
+                          >Last Name *</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="lastName"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="email" class="form-label">Email *</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="phone" class="form-label"
+                          >Phone Number *</label
+                        >
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="phone"
+                          required
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Contact Information -->
-                <div class="row mb-4">
-                  <div class="col-md-6">
-                    <label for="name" class="form-label">Full Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="name"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      required
-                    />
+                <div class="card shadow-sm border-0 rounded-3 mt-4">
+                  <div class="card-body p-4">
+                    <h4 class="card-title mb-4">
+                      <i class="fas fa-calendar text-primary me-2"></i>Booking
+                      Details
+                    </h4>
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label for="startDate" class="form-label"
+                          >Check-in Date *</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="startDate"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="endDate" class="form-label"
+                          >Check-out Date *</label
+                        >
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="endDate"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="roomType" class="form-label"
+                          >Room Type *</label
+                        >
+                        <select class="form-select" id="roomType" required>
+                          <option value="">Select room type</option>
+                          <option value="standard">Standard</option>
+                          <option value="deluxe">Deluxe</option>
+                          <option value="suite">Suite</option>
+                          <option value="villa">Villa</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="people" class="form-label"
+                          >Number of Guests *</label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="people"
+                          min="1"
+                          required
+                        />
+                      </div>
+                      <div class="col-md-6">
+                        <label for="mealPlan" class="form-label"
+                          >Meal Plan *</label
+                        >
+                        <select class="form-select" id="mealPlan" required>
+                          <option value="">Select meal plan</option>
+                          <option value="room_only">Room Only</option>
+                          <option value="breakfast">Breakfast</option>
+                          <option value="half_board">Half Board</option>
+                          <option value="full_board">Full Board</option>
+                          <option value="all_inclusive">All Inclusive</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="transportation" class="form-label"
+                          >Transportation *</label
+                        >
+                        <select
+                          class="form-select"
+                          id="transportation"
+                          required
+                        >
+                          <option value="">Select transportation</option>
+                          <option value="none">No Transportation</option>
+                          <option value="shared">Shared Transfer</option>
+                          <option value="private">Private Transfer</option>
+                          <option value="luxury">Luxury Transfer</option>
+                        </select>
+                      </div>
+                      <div class="col-12">
+                        <label for="specialRequests" class="form-label"
+                          >Special Requests</label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="specialRequests"
+                          rows="3"
+                          placeholder="Any special requests or requirements?"
+                        ></textarea>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div class="row mb-4">
-                  <div class="col-md-6">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="phone"
-                      required
-                    />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="nationality" class="form-label"
-                      >Nationality</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="nationality"
-                      required
-                    />
-                  </div>
-                </div>
+                <div id="booking-summary" class="mt-4"></div>
 
-                <!-- Special Requests -->
-                <div class="mb-4">
-                  <label for="specialRequests" class="form-label"
-                    >Special Requests</label
-                  >
-                  <textarea
-                    class="form-control"
-                    id="specialRequests"
-                    rows="3"
-                    placeholder="Any special requirements or preferences?"
-                  ></textarea>
-                </div>
-
-                <!-- Terms -->
-                <div class="form-check mb-4">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="termsAccepted"
-                    required
-                  />
-                  <label class="form-check-label" for="termsAccepted">
-                    I agree to the <a href="#">Terms & Conditions</a> and
-                    <a href="#">Privacy Policy</a>
-                  </label>
-                </div>
-
-                <div class="d-grid">
+                <div class="d-grid mt-4">
                   <button type="submit" class="btn btn-primary btn-lg">
-                    <i class="fas fa-paper-plane me-2"></i>Complete Booking
+                    <i class="fas fa-check-circle me-2"></i>Confirm Booking
                   </button>
                 </div>
               </form>
