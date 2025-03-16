@@ -99,11 +99,18 @@ export function createDestinationCard(destination) {
 
 // Function to filter destinations
 async function filterDestinations() {
-  const searchQuery = document
-    .getElementById('searchDestination')
-    .value.toLowerCase()
-  const selectedRegion = document.getElementById('regionFilter').value
-  const selectedPrice = document.getElementById('priceFilter').value
+  const searchElement = document.getElementById('searchDestination')
+  const regionElement = document.getElementById('regionFilter')
+  const priceElement = document.getElementById('priceFilter')
+
+  // If elements don't exist, we're probably on the home page
+  if (!searchElement || !regionElement || !priceElement) {
+    return
+  }
+
+  const searchQuery = searchElement.value.toLowerCase()
+  const selectedRegion = regionElement.value
+  const selectedPrice = priceElement.value
 
   // Construct query parameters
   const params = new URLSearchParams()
@@ -162,17 +169,23 @@ async function filterDestinations() {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
-  // Initial load of destinations
-  filterDestinations()
+  // Check if we're on the destinations page by looking for the filters
+  const isDestinationsPage =
+    document.getElementById('searchDestination') !== null
 
-  // Add event listeners for filters
-  document
-    .getElementById('searchDestination')
-    .addEventListener('input', filterDestinations)
-  document
-    .getElementById('regionFilter')
-    .addEventListener('change', filterDestinations)
-  document
-    .getElementById('priceFilter')
-    .addEventListener('change', filterDestinations)
+  if (isDestinationsPage) {
+    // Initial load of destinations
+    filterDestinations()
+
+    // Add event listeners for filters
+    document
+      .getElementById('searchDestination')
+      .addEventListener('input', filterDestinations)
+    document
+      .getElementById('regionFilter')
+      .addEventListener('change', filterDestinations)
+    document
+      .getElementById('priceFilter')
+      .addEventListener('change', filterDestinations)
+  }
 })
