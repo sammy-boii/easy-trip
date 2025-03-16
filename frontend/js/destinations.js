@@ -1,3 +1,5 @@
+import { ENDPOINTS } from './constants.js'
+
 // Function to fetch trips from the API
 async function fetchTrips(search = '', region = '', priceRange = '') {
   try {
@@ -6,9 +8,7 @@ async function fetchTrips(search = '', region = '', priceRange = '') {
     if (region) queryParams.append('region', region)
     if (priceRange) queryParams.append('priceRange', priceRange)
 
-    const response = await fetch(
-      `http://localhost:5000/api/trips?${queryParams}`
-    )
+    const response = await fetch(`${ENDPOINTS.TRIPS}?${queryParams}`)
     const data = await response.json()
     return data
   } catch (error) {
@@ -105,8 +105,7 @@ async function filterDestinations() {
   const selectedRegion = document.getElementById('regionFilter').value
   const selectedPrice = document.getElementById('priceFilter').value
 
-  // Construct API URL with query parameters
-  let url = 'http://localhost:5000/api/trips?'
+  // Construct query parameters
   const params = new URLSearchParams()
 
   if (searchQuery) {
@@ -132,10 +131,8 @@ async function filterDestinations() {
     }
   }
 
-  url += params.toString()
-
   try {
-    const response = await fetch(url)
+    const response = await fetch(`${ENDPOINTS.TRIPS}?${params}`)
     const destinations = await response.json()
 
     const destinationsGrid = document.getElementById('destinationsGrid')

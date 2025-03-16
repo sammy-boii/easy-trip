@@ -1,3 +1,5 @@
+import { ENDPOINTS } from './constants.js'
+
 // Set minimum date for date inputs
 const today = new Date().toISOString().split('T')[0]
 document.getElementById('startDate').min = today
@@ -17,7 +19,7 @@ startDateInput.addEventListener('change', () => {
 // Fetch trips from the API
 async function fetchTrips() {
   try {
-    const response = await fetch('http://localhost:5000/api/trips')
+    const response = await fetch(ENDPOINTS.TRIPS)
     const data = await response.json()
     return data
   } catch (error) {
@@ -29,7 +31,7 @@ async function fetchTrips() {
 // Fetch a specific trip from the API
 async function fetchTrip(id) {
   try {
-    const response = await fetch(`http://localhost:5000/api/trips/${id}`)
+    const response = await fetch(`${ENDPOINTS.TRIPS}/${id}`)
     if (!response.ok) {
       throw new Error('Failed to fetch trip details')
     }
@@ -589,7 +591,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         try {
-          const response = await fetch('http://localhost:5000/api/bookings', {
+          const response = await fetch(ENDPOINTS.BOOKINGS, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

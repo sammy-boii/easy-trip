@@ -4,6 +4,8 @@ const connectDB = require('./config/db')
 const tripRoutes = require('./routes/tripRoutes')
 const bookingRoutes = require('./routes/bookingRoutes')
 
+const PORT = process.env.PORT || 5000
+
 // Connect to MongoDB
 connectDB()
 
@@ -18,27 +20,15 @@ app.use('/api/trips', tripRoutes)
 app.use('/api/bookings', bookingRoutes)
 
 // Error handling middleware
-app.use((err, req, res, next) => {
-  const statusCode = res.statusCode === 200 ? 500 : res.statusCode
-  res.status(statusCode)
-  res.json({
+app.use((err, _req, res, _next) => {
+  res.status(500).json({
     message: err.message,
     stack: process.env.NODE_ENV === 'production' ? null : err.stack
   })
 })
 
-// Health check route
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok' })
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
 
-// For local development
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 5000
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-  })
-}
-
-// Export the Express API
 module.exports = app
