@@ -1,7 +1,7 @@
 import { ENDPOINTS } from './constants.js'
 
 // Function to fetch trips from the API
-async function fetchTrips(search = '', region = '', priceRange = '') {
+export async function fetchTrips(search = '', region = '', priceRange = '') {
   try {
     const queryParams = new URLSearchParams()
     if (search) queryParams.append('search', search)
@@ -37,7 +37,7 @@ function createRatingStars(rating) {
 }
 
 // Function to create destination card
-function createDestinationCard(destination) {
+export function createDestinationCard(destination) {
   return `
     <div class="col-md-6 col-lg-4 mb-4">
       <div class="card h-100 shadow-sm hover-shadow">
