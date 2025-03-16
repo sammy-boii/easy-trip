@@ -3,8 +3,8 @@ const isProduction = window.location.hostname !== 'localhost'
 
 // API URLs
 const API_URL = isProduction
-  ? '/api' // In production, use relative path
-  : 'http://localhost:5000/api' // In development, use localhost
+  ? 'https://easy-trip-3z43.onrender.com/api'
+  : 'http://localhost:5000/api'
 
 // API Endpoints
 const ENDPOINTS = {
